@@ -316,6 +316,7 @@ body {
   </div>
 
   <button class="reset-btn" onclick="resetChecks('tab-a')">Сбросить все отметки</button>
+  <button class="reset-btn" style="background:var(--accent);color:#fff;border-color:var(--accent)" onclick="openLog('A')">📝 Записать результат</button>
 </div>
 
 <!-- PROGRAM B -->
@@ -434,6 +435,7 @@ body {
   </div>
 
   <button class="reset-btn" onclick="resetChecks('tab-b')">Сбросить все отметки</button>
+  <button class="reset-btn" style="background:var(--accent);color:#fff;border-color:var(--accent)" onclick="openLog('B')">📝 Записать результат</button>
 </div>
 
 <!-- PROGRAM C -->
@@ -533,6 +535,75 @@ body {
   </div>
 
   <button class="reset-btn" onclick="resetChecks('tab-c')">Сбросить все отметки</button>
+  <button class="reset-btn" style="background:var(--accent);color:#fff;border-color:var(--accent)" onclick="openLog('C')">📝 Записать результат</button>
+</div>
+
+<!-- LOG MODAL -->
+<div id="log-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:300; padding:20px; overflow-y:auto;">
+  <div style="max-width:500px; margin:0 auto; background:var(--surface); border-radius:16px; padding:20px; border:1px solid var(--accent);">
+    <h2 style="font-size:20px; margin-bottom:16px; color:var(--accent);">📝 Результат тренировки</h2>
+
+    <div style="margin-bottom:12px;">
+      <label style="font-size:14px;color:var(--muted);">Программа</label>
+      <div id="log-program" style="font-size:18px;font-weight:700;"></div>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="font-size:14px;color:var(--muted);">Дата</label>
+      <div id="log-date" style="font-size:16px;"></div>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="font-size:14px;color:var(--muted);">Выполненные серии</label>
+      <div id="log-series" style="font-size:16px;"></div>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Веса (кг) — что использовал</label>
+      <textarea id="log-weights" rows="2" placeholder="Пример: присед 12кг, жим 10кг, бок 4кг" style="width:100%;background:var(--card);color:var(--text);border:1px solid #555;border-radius:8px;padding:10px;font-size:16px;resize:vertical;"></textarea>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Жжение в мышцах?</label>
+      <div style="display:flex;gap:8px;">
+        <button class="burn-btn" onclick="setBurn(this,'да, сильное')" style="flex:1;padding:10px;border-radius:8px;border:1px solid #555;background:var(--card);color:var(--text);font-size:15px;cursor:pointer;">🔥 Сильное</button>
+        <button class="burn-btn" onclick="setBurn(this,'лёгкое')" style="flex:1;padding:10px;border-radius:8px;border:1px solid #555;background:var(--card);color:var(--text);font-size:15px;cursor:pointer;">🔥 Лёгкое</button>
+        <button class="burn-btn" onclick="setBurn(this,'нет')" style="flex:1;padding:10px;border-radius:8px;border:1px solid #555;background:var(--card);color:var(--text);font-size:15px;cursor:pointer;">❌ Нет</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Самочувствие после</label>
+      <div style="display:flex;gap:8px;">
+        <button class="feel-btn" onclick="setFeel(this,'отлично')" style="flex:1;padding:10px;border-radius:8px;border:1px solid #555;background:var(--card);color:var(--text);font-size:15px;cursor:pointer;">💪 Отлично</button>
+        <button class="feel-btn" onclick="setFeel(this,'нормально')" style="flex:1;padding:10px;border-radius:8px;border:1px solid #555;background:var(--card);color:var(--text);font-size:15px;cursor:pointer;">👍 Норм</button>
+        <button class="feel-btn" onclick="setFeel(this,'устал')" style="flex:1;padding:10px;border-radius:8px;border:1px solid #555;background:var(--card);color:var(--text);font-size:15px;cursor:pointer;">😮‍💨 Устал</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Заметки (необязательно)</label>
+      <textarea id="log-notes" rows="2" placeholder="Боль в плече, темп слишком быстрый, вес мал..." style="width:100%;background:var(--card);color:var(--text);border:1px solid #555;border-radius:8px;padding:10px;font-size:16px;resize:vertical;"></textarea>
+    </div>
+
+    <div id="log-preview" style="background:var(--card);padding:12px;border-radius:8px;margin-bottom:12px;font-size:13px;font-family:monospace;white-space:pre-wrap;display:none;max-height:200px;overflow-y:auto;"></div>
+
+    <div style="display:flex;gap:8px;">
+      <button onclick="generateAndCopy()" style="flex:2;padding:14px;border:none;border-radius:10px;background:var(--success);color:#000;font-size:16px;font-weight:700;cursor:pointer;">📋 Копировать</button>
+      <button onclick="closeLog()" style="flex:1;padding:14px;border:none;border-radius:10px;background:#555;color:#fff;font-size:16px;cursor:pointer;">Закрыть</button>
+    </div>
+
+    <div id="log-copied" style="display:none;text-align:center;margin-top:8px;color:var(--success);font-weight:700;">✓ Скопировано! Вставь в чат Claude</div>
+
+    <!-- History -->
+    <div style="margin-top:20px;border-top:1px solid #555;padding-top:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:14px;color:var(--muted);">История тренировок</span>
+        <button onclick="toggleHistory()" style="background:none;border:1px solid #555;color:var(--muted);padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;" id="hist-toggle">Показать</button>
+      </div>
+      <div id="log-history" style="display:none;margin-top:8px;max-height:300px;overflow-y:auto;"></div>
+    </div>
+  </div>
 </div>
 
 <!-- TIMER BAR -->
@@ -640,6 +711,136 @@ window.resetChecks = function(tabId) {
     });
   });
 };
+
+// ===== LOG FUNCTIONALITY =====
+let logProgram = '';
+let logBurn = '';
+let logFeel = '';
+
+function openLog(prog) {
+  logProgram = prog;
+  logBurn = '';
+  logFeel = '';
+  document.getElementById('log-program').textContent = 'Программа ' + prog;
+  const now = new Date();
+  document.getElementById('log-date').textContent = now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU', {hour:'2-digit',minute:'2-digit'});
+
+  // Count completed series
+  const tabId = 'tab-' + prog.toLowerCase();
+  const total = document.querySelectorAll('#' + tabId + ' .series input').length;
+  const done = document.querySelectorAll('#' + tabId + ' .series input:checked').length;
+  document.getElementById('log-series').textContent = done + ' из ' + total;
+
+  document.getElementById('log-weights').value = '';
+  document.getElementById('log-notes').value = '';
+  document.getElementById('log-preview').style.display = 'none';
+  document.getElementById('log-copied').style.display = 'none';
+
+  // Reset button states
+  document.querySelectorAll('.burn-btn').forEach(b => b.style.border = '1px solid #555');
+  document.querySelectorAll('.feel-btn').forEach(b => b.style.border = '1px solid #555');
+
+  document.getElementById('log-modal').style.display = 'block';
+}
+
+function closeLog() {
+  document.getElementById('log-modal').style.display = 'none';
+}
+
+function setBurn(btn, val) {
+  logBurn = val;
+  document.querySelectorAll('.burn-btn').forEach(b => b.style.border = '1px solid #555');
+  btn.style.border = '2px solid var(--success)';
+}
+
+function setFeel(btn, val) {
+  logFeel = val;
+  document.querySelectorAll('.feel-btn').forEach(b => b.style.border = '1px solid #555');
+  btn.style.border = '2px solid var(--success)';
+}
+
+function generateLog() {
+  const date = document.getElementById('log-date').textContent;
+  const series = document.getElementById('log-series').textContent;
+  const weights = document.getElementById('log-weights').value.trim();
+  const notes = document.getElementById('log-notes').value.trim();
+
+  let text = '=== ТРЕНИРОВКА ===\n';
+  text += 'Дата: ' + date + '\n';
+  text += 'Программа: ' + logProgram + '\n';
+  text += 'Серии: ' + series + '\n';
+  if (weights) text += 'Веса: ' + weights + '\n';
+  if (logBurn) text += 'Жжение: ' + logBurn + '\n';
+  if (logFeel) text += 'Самочувствие: ' + logFeel + '\n';
+  if (notes) text += 'Заметки: ' + notes + '\n';
+  text += '==================';
+  return text;
+}
+
+function generateAndCopy() {
+  const text = generateLog();
+  document.getElementById('log-preview').textContent = text;
+  document.getElementById('log-preview').style.display = 'block';
+
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('log-copied').style.display = 'block';
+    if (navigator.vibrate) navigator.vibrate(100);
+  }).catch(() => {
+    // Fallback: select text for manual copy
+    const el = document.getElementById('log-preview');
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.getElementById('log-copied').textContent = '⚠️ Выдели текст выше и скопируй вручную';
+    document.getElementById('log-copied').style.display = 'block';
+  });
+
+  // Save to localStorage history
+  const history = JSON.parse(localStorage.getItem('workout-history') || '[]');
+  history.unshift({ date: new Date().toISOString(), text: text });
+  if (history.length > 50) history.length = 50;
+  localStorage.setItem('workout-history', JSON.stringify(history));
+}
+
+function toggleHistory() {
+  const el = document.getElementById('log-history');
+  const btn = document.getElementById('hist-toggle');
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    btn.textContent = 'Скрыть';
+    renderHistory();
+  } else {
+    el.style.display = 'none';
+    btn.textContent = 'Показать';
+  }
+}
+
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem('workout-history') || '[]');
+  const el = document.getElementById('log-history');
+  if (history.length === 0) {
+    el.innerHTML = '<div style="color:var(--muted);font-size:13px;">Пока нет записей</div>';
+    return;
+  }
+  el.innerHTML = history.map((h, i) => {
+    const d = new Date(h.date);
+    return '<div style="background:var(--card);padding:10px;border-radius:8px;margin-bottom:6px;font-size:12px;font-family:monospace;white-space:pre-wrap;">' +
+      h.text +
+      '<br><button onclick="copyHistoryItem(' + i + ')" style="margin-top:6px;padding:4px 10px;background:var(--accent2);border:none;border-radius:4px;color:#fff;font-size:11px;cursor:pointer;">📋 Копировать</button>' +
+      '</div>';
+  }).join('');
+}
+
+function copyHistoryItem(idx) {
+  const history = JSON.parse(localStorage.getItem('workout-history') || '[]');
+  if (history[idx]) {
+    navigator.clipboard.writeText(history[idx].text).then(() => {
+      if (navigator.vibrate) navigator.vibrate(100);
+    });
+  }
+}
 </script>
 
 </body>
