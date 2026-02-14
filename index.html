@@ -156,6 +156,26 @@ body {
 .phase-text { font-size: 15px; }
 .phase-text strong { color: var(--accent2); }
 
+/* Weight input */
+.weight-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 10px; padding-top: 8px; border-top: 1px solid #333;
+}
+.weight-row label {
+  font-size: 14px; color: var(--accent2); font-weight: 600; white-space: nowrap;
+}
+.weight-input {
+  width: 70px; padding: 8px 6px; text-align: center;
+  background: var(--card); color: var(--text); border: 2px solid #555;
+  border-radius: 8px; font-size: 18px; font-weight: 700;
+  -moz-appearance: textfield;
+}
+.weight-input::-webkit-inner-spin-button,
+.weight-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.weight-input:focus { border-color: var(--accent2); outline: none; }
+.weight-unit { font-size: 14px; color: var(--muted); }
+.weight-hint { font-size: 12px; color: var(--muted); margin-left: auto; }
+
 /* Reset */
 .reset-btn {
   display: block; margin: 16px auto; padding: 12px 24px;
@@ -243,6 +263,12 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-trigger" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 10-15</span>
+      </div>
       <div class="series" data-id="a-trigger">
         <label><input type="checkbox"><span class="check"></span><span class="stext">Серия 1</span></label>
       </div>
@@ -261,6 +287,12 @@ body {
         <span class="ex-tag">8-12 кг</span>
       </div>
       <div class="ex-note">⚠️ Руки НЕ выпрямлять, гантели НЕ до груди. Отдых: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-1" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 8-12</span>
+      </div>
       <div class="series" data-id="a-1">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -282,6 +314,12 @@ body {
         <span class="ex-tag">3-5 кг</span>
       </div>
       <div class="ex-note">⚠️ Руки не опускать полностью, амплитуда до 45°. Отдых: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-2" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 3-5</span>
+      </div>
       <div class="series" data-id="a-2">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -302,6 +340,12 @@ body {
         <span class="ex-tag">5-8 кг</span>
       </div>
       <div class="ex-note">⚠️ Локти НЕ разгибать полностью</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-3" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 5-8</span>
+      </div>
       <div class="series" data-id="a-3">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -343,6 +387,12 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-trigger" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 10-15</span>
+      </div>
       <div class="series" data-id="b-trigger">
         <label><input type="checkbox"><span class="check"></span><span class="stext">Серия 1</span></label>
       </div>
@@ -361,6 +411,12 @@ body {
         <span class="ex-tag">лёгкий вес</span>
       </div>
       <div class="ex-note">⚠️ Широкий хват, руки НЕ выпрямлять полностью. Отдых: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-1" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: лёгкий</span>
+      </div>
       <div class="series" data-id="b-1">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -382,6 +438,12 @@ body {
         <span class="ex-tag">8-10 кг</span>
       </div>
       <div class="ex-note">⚠️ Каждой рукой, средняя амплитуда, спина ровная. Отдых: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-2" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 8-10</span>
+      </div>
       <div class="series" data-id="b-2">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -402,6 +464,12 @@ body {
         <span class="ex-tag">лёгкий вес</span>
       </div>
       <div class="ex-note">⚠️ Плавное движение. Отдых: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-3" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: лёгкий</span>
+      </div>
       <div class="series" data-id="b-3">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -421,6 +489,12 @@ body {
         <span class="ex-tag">5-8 кг</span>
       </div>
       <div class="ex-note">⚠️ Руки НЕ выпрямлять и НЕ сгибать полностью</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-4" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 5-8</span>
+      </div>
       <div class="series" data-id="b-4">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -462,6 +536,12 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚡ Главное упражнение дня! Максимальный гормональный отклик. Отдых: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="c-1" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 10-15</span>
+      </div>
       <div class="series" data-id="c-1">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -485,6 +565,12 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚠️ Колени слегка согнуты, НЕ выпрямлять. Отдых: 5-7 мин</div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="c-2" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 10-15</span>
+      </div>
       <div class="series" data-id="c-2">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -504,6 +590,12 @@ body {
         <span class="ex-tag">3 x 30-40 сек</span>
         <span class="ex-tag">8-12 кг</span>
       </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="c-3" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 8-12</span>
+      </div>
       <div class="series" data-id="c-3">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
@@ -521,6 +613,12 @@ body {
         <span class="ex-tag">1-2 серии</span>
         <span class="ex-tag">3 x 30-40 сек</span>
         <span class="ex-tag">3-5 кг</span>
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="c-4" inputmode="decimal" step="0.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">рек: 3-5</span>
       </div>
       <div class="series" data-id="c-4">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
@@ -559,8 +657,8 @@ body {
     </div>
 
     <div style="margin-bottom:12px;">
-      <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Веса (кг) — что использовал</label>
-      <textarea id="log-weights" rows="2" placeholder="Пример: присед 12кг, жим 10кг, бок 4кг" style="width:100%;background:var(--card);color:var(--text);border:1px solid #555;border-radius:8px;padding:10px;font-size:16px;resize:vertical;"></textarea>
+      <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Веса (кг) — из карточек</label>
+      <div id="log-weights-auto" style="background:var(--card);padding:10px;border-radius:8px;font-size:15px;line-height:1.8;"></div>
     </div>
 
     <div style="margin-bottom:12px;">
@@ -700,6 +798,27 @@ document.querySelectorAll('.series input').forEach(cb => {
   });
 });
 
+// Persist weight inputs in localStorage
+const exNames = {
+  'a-trigger':'Приседания (триггер)', 'a-1':'Жим гантелей 30°', 'a-2':'Подъёмы в стороны', 'a-3':'Французский жим',
+  'b-trigger':'Приседания (триггер)', 'b-1':'Тяга блока к груди', 'b-2':'Тяга гантели в наклоне', 'b-3':'Face pull', 'b-4':'Подъёмы на бицепс',
+  'c-1':'Приседания (развив.)', 'c-2':'Румынская тяга', 'c-3':'Шраги', 'c-4':'Подъёмы перед собой'
+};
+
+document.querySelectorAll('.weight-input').forEach(input => {
+  const wid = input.dataset.weight;
+  const key = 'weight-' + wid;
+  const saved = localStorage.getItem(key);
+  if (saved) input.value = saved;
+
+  input.addEventListener('change', () => {
+    localStorage.setItem(key, input.value);
+  });
+  input.addEventListener('input', () => {
+    localStorage.setItem(key, input.value);
+  });
+});
+
 // Reset also clears localStorage
 const origReset = window.resetChecks;
 window.resetChecks = function(tabId) {
@@ -710,12 +829,29 @@ window.resetChecks = function(tabId) {
       localStorage.setItem('workout-' + id + '-' + idx, '0');
     });
   });
+  // НЕ сбрасываем веса — они сохраняются между тренировками
+  // (пользователь обычно работает с теми же весами)
 };
 
 // ===== LOG FUNCTIONALITY =====
 let logProgram = '';
 let logBurn = '';
 let logFeel = '';
+
+function collectWeights(prog) {
+  const tabId = 'tab-' + prog.toLowerCase();
+  const inputs = document.querySelectorAll('#' + tabId + ' .weight-input');
+  const weights = [];
+  inputs.forEach(inp => {
+    const wid = inp.dataset.weight;
+    const name = exNames[wid] || wid;
+    const val = inp.value;
+    if (val && parseFloat(val) > 0) {
+      weights.push({ name: name, kg: val });
+    }
+  });
+  return weights;
+}
 
 function openLog(prog) {
   logProgram = prog;
@@ -731,7 +867,15 @@ function openLog(prog) {
   const done = document.querySelectorAll('#' + tabId + ' .series input:checked').length;
   document.getElementById('log-series').textContent = done + ' из ' + total;
 
-  document.getElementById('log-weights').value = '';
+  // Collect weights from exercise cards
+  const weights = collectWeights(prog);
+  const wDiv = document.getElementById('log-weights-auto');
+  if (weights.length > 0) {
+    wDiv.innerHTML = weights.map(w => '<div>• ' + w.name + ': <strong>' + w.kg + ' кг</strong></div>').join('');
+  } else {
+    wDiv.innerHTML = '<div style="color:var(--muted);">Веса не заполнены — заполни в карточках упражнений</div>';
+  }
+
   document.getElementById('log-notes').value = '';
   document.getElementById('log-preview').style.display = 'none';
   document.getElementById('log-copied').style.display = 'none';
@@ -762,14 +906,17 @@ function setFeel(btn, val) {
 function generateLog() {
   const date = document.getElementById('log-date').textContent;
   const series = document.getElementById('log-series').textContent;
-  const weights = document.getElementById('log-weights').value.trim();
+  const weights = collectWeights(logProgram);
   const notes = document.getElementById('log-notes').value.trim();
 
   let text = '=== ТРЕНИРОВКА ===\n';
   text += 'Дата: ' + date + '\n';
   text += 'Программа: ' + logProgram + '\n';
   text += 'Серии: ' + series + '\n';
-  if (weights) text += 'Веса: ' + weights + '\n';
+  if (weights.length > 0) {
+    text += 'Веса:\n';
+    weights.forEach(w => { text += '  ' + w.name + ': ' + w.kg + ' кг\n'; });
+  }
   if (logBurn) text += 'Жжение: ' + logBurn + '\n';
   if (logFeel) text += 'Самочувствие: ' + logFeel + '\n';
   if (notes) text += 'Заметки: ' + notes + '\n';
