@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Тренировка — Селуянов</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #1a1a2e; --surface: #16213e; --card: #0f3460;
+  --accent: #e94560; --accent2: #00b4d8; --text: #eee;
+  --muted: #888; --success: #4ade80; --warn: #fbbf24;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--text);
+  font-size: 18px; line-height: 1.5;
+  min-height: 100vh; padding-bottom: 80px;
+  -webkit-tap-highlight-color: transparent;
+}
+.header {
+  background: var(--surface); padding: 16px;
+  text-align: center; position: sticky; top: 0; z-index: 100;
+  border-bottom: 2px solid var(--accent);
+}
+.header h1 { font-size: 20px; font-weight: 700; }
+.header .sub { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+/* Tabs */
+.tabs {
+  display: flex; background: var(--surface);
+  position: sticky; top: 70px; z-index: 99;
+  border-bottom: 1px solid #333;
+}
+.tab {
+  flex: 1; padding: 14px 8px; text-align: center;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  border-bottom: 3px solid transparent; transition: all 0.2s;
+  background: none; color: var(--muted); border-top: none; border-left: none; border-right: none;
+}
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Rules banner */
+.rules {
+  background: var(--card); margin: 12px; padding: 14px;
+  border-radius: 12px; font-size: 14px; border-left: 4px solid var(--accent2);
+}
+.rules summary {
+  font-weight: 700; font-size: 16px; cursor: pointer;
+  color: var(--accent2); list-style: none;
+}
+.rules summary::before { content: '📋 '; }
+.rules ul { margin-top: 8px; padding-left: 20px; }
+.rules li { margin-bottom: 4px; }
+
+/* Mesocycle */
+.meso {
+  background: var(--card); margin: 12px; padding: 14px;
+  border-radius: 12px; text-align: center;
+  border: 1px solid var(--accent);
+}
+.meso .phase { font-size: 22px; font-weight: 700; color: var(--accent); }
+.meso .detail { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+/* Program content */
+.program { display: none; padding: 0 12px 12px; }
+.program.active { display: block; }
+
+/* Exercise card */
+.exercise {
+  background: var(--surface); border-radius: 12px;
+  margin-bottom: 12px; overflow: hidden;
+  border: 1px solid #333;
+}
+.exercise.trigger { border-color: var(--warn); }
+.exercise.trigger .ex-header { background: rgba(251,191,36,0.15); }
+.ex-header {
+  padding: 14px 16px; display: flex; align-items: center;
+  gap: 10px; cursor: pointer;
+}
+.ex-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 16px; flex-shrink: 0;
+}
+.exercise.trigger .ex-num { background: var(--warn); color: #000; }
+.ex-title { font-weight: 600; font-size: 17px; flex: 1; }
+.ex-body { padding: 0 16px 14px; }
+.ex-detail {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;
+}
+.ex-tag {
+  background: var(--card); padding: 4px 10px; border-radius: 20px;
+  font-size: 13px; white-space: nowrap;
+}
+.ex-note {
+  font-size: 14px; color: var(--warn); padding: 6px 0;
+  border-top: 1px solid #333;
+}
+
+/* Series checkboxes */
+.series { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.series label {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--card); padding: 8px 14px; border-radius: 10px;
+  cursor: pointer; font-size: 15px; transition: all 0.2s;
+}
+.series input { display: none; }
+.series .check {
+  width: 24px; height: 24px; border: 2px solid var(--muted);
+  border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; transition: all 0.2s; flex-shrink: 0;
+}
+.series input:checked ~ .check {
+  background: var(--success); border-color: var(--success);
+}
+.series input:checked ~ .check::after { content: '✓'; color: #000; font-weight: 700; }
+.series input:checked ~ .stext { text-decoration: line-through; color: var(--muted); }
+
+/* Timers */
+.timer-section {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--surface); border-top: 2px solid var(--accent);
+  padding: 10px 16px; z-index: 200;
+  display: flex; align-items: center; gap: 10px;
+}
+.timer-display {
+  font-size: 36px; font-weight: 700; font-variant-numeric: tabular-nums;
+  min-width: 90px; text-align: center;
+}
+.timer-display.warning { color: var(--warn); }
+.timer-display.done { color: var(--success); }
+.timer-btns { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.timer-btn {
+  padding: 10px 14px; border: none; border-radius: 10px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  color: #fff; transition: all 0.15s;
+}
+.btn-work { background: var(--accent); }
+.btn-rest { background: var(--accent2); }
+.btn-long { background: #7c3aed; }
+.btn-stop { background: #555; }
+.timer-btn:active { transform: scale(0.95); }
+.timer-label { font-size: 12px; color: var(--muted); text-align: center; }
+
+/* Warmup/cooldown */
+.phase-card {
+  background: var(--surface); margin-bottom: 12px;
+  padding: 14px 16px; border-radius: 12px;
+  border: 1px dashed #555; display: flex; align-items: center; gap: 10px;
+}
+.phase-icon { font-size: 24px; }
+.phase-text { font-size: 15px; }
+.phase-text strong { color: var(--accent2); }
+
+/* Reset */
+.reset-btn {
+  display: block; margin: 16px auto; padding: 12px 24px;
+  background: #333; border: 1px solid #555; border-radius: 10px;
+  color: var(--muted); font-size: 14px; cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Статодинамика по Селуянову</h1>
+  <div class="sub">ИЗОТОН для 50+ | Гормональный акцент</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('a')">A Грудь</button>
+  <button class="tab" onclick="showTab('b')">B Спина</button>
+  <button class="tab" onclick="showTab('c')">C Ноги</button>
+  <button class="tab" onclick="showTab('rules')">Правила</button>
+</div>
+
+<!-- RULES TAB -->
+<div class="program" id="tab-rules">
+  <div style="margin-top:12px">
+    <div class="rules" style="border-left-color: var(--accent)">
+      <summary style="color: var(--accent)">Параметры статодинамики</summary>
+      <ul>
+        <li><strong>Вес:</strong> 20-40% от 1RM (5-12 кг)</li>
+        <li><strong>Темп:</strong> 3 сек вверх + 3 сек вниз</li>
+        <li><strong>Подход:</strong> 30-40 сек → до жжения</li>
+        <li><strong>Серия:</strong> 3 подхода, отдых 30 сек</li>
+        <li><strong>Между сериями:</strong> 5-7 мин</li>
+        <li><strong>Амплитуда:</strong> частичная, мышца не расслабляется</li>
+        <li><strong>Дыхание:</strong> НИКОГДА не задерживать!</li>
+      </ul>
+    </div>
+    <div class="rules" style="border-left-color: var(--warn)">
+      <summary style="color: var(--warn)">Безопасность</summary>
+      <ul>
+        <li>BB &lt; 30 → тонизирующая (1-2 серии)</li>
+        <li>BB &lt; 20 → отдых, без тренировки</li>
+        <li>Пульс цель: 90-110 bpm</li>
+        <li>Плечи: амплитуда до 45°, без жима стоя</li>
+        <li>Колени: частичная амплитуда, без прыжков</li>
+      </ul>
+    </div>
+    <div class="rules" style="border-left-color: var(--success)">
+      <summary style="color: var(--success)">Ноги первыми = гормоны</summary>
+      <ul>
+        <li>Каждая тренировка начинается с приседаний</li>
+        <li>Ноги выделяют 4x больше гормонов чем руки</li>
+        <li>1 серия приседаний → тестостерон + GH</li>
+        <li>Затем целевые мышцы "захватывают" гормоны</li>
+      </ul>
+    </div>
+    <div class="meso">
+      <div class="phase" id="meso-phase">ВХОД</div>
+      <div class="detail" id="meso-detail">Недели 1-2: тонизирующие, 2-3 серии на группу</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM A -->
+<div class="program active" id="tab-a">
+  <div class="meso">
+    <div class="phase" id="meso-a">ВХОД — 2-3 серии</div>
+    <div class="detail">Грудь / Плечи / Трицепс</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-icon">🚣</div>
+    <div class="phase-text"><strong>Разминка:</strong> Гребля 5-7 мин, пульс до 120</div>
+  </div>
+
+  <div class="exercise trigger">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">⚡</div>
+      <div class="ex-title">Приседания — гормональный триггер</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">1 серия</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">10-15 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
+      <div class="series" data-id="a-trigger">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Серия 1</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">1</div>
+      <div class="ex-title">Жим гантелей 30°</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3-4 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">8-12 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Руки НЕ выпрямлять, гантели НЕ до груди. Отдых: 5-7 мин</div>
+      <div class="series" data-id="a-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С4</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">2</div>
+      <div class="ex-title">Подъёмы в стороны</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">2-3 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">3-5 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Руки не опускать полностью, амплитуда до 45°. Отдых: 5-7 мин</div>
+      <div class="series" data-id="a-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">3</div>
+      <div class="ex-title">Французский жим лёжа</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">2-3 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">5-8 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Локти НЕ разгибать полностью</div>
+      <div class="series" data-id="a-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-icon">🧘</div>
+    <div class="phase-text"><strong>Заминка:</strong> Растяжка грудных, плеч, трицепсов — 5 мин</div>
+  </div>
+
+  <button class="reset-btn" onclick="resetChecks('tab-a')">Сбросить все отметки</button>
+</div>
+
+<!-- PROGRAM B -->
+<div class="program" id="tab-b">
+  <div class="meso">
+    <div class="phase">ВХОД — 2-3 серии</div>
+    <div class="detail">Спина / Бицепс</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-icon">🚣</div>
+    <div class="phase-text"><strong>Разминка:</strong> Гребля 5-7 мин, пульс до 120</div>
+  </div>
+
+  <div class="exercise trigger">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">⚡</div>
+      <div class="ex-title">Приседания — гормональный триггер</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">1 серия</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">10-15 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
+      <div class="series" data-id="b-trigger">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Серия 1</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">1</div>
+      <div class="ex-title">Тяга блока к груди</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3-4 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">лёгкий вес</span>
+      </div>
+      <div class="ex-note">⚠️ Широкий хват, руки НЕ выпрямлять полностью. Отдых: 5-7 мин</div>
+      <div class="series" data-id="b-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С4</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">2</div>
+      <div class="ex-title">Тяга гантели в наклоне</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">2-3 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">8-10 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Каждой рукой, средняя амплитуда, спина ровная. Отдых: 5-7 мин</div>
+      <div class="series" data-id="b-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">3</div>
+      <div class="ex-title">Face pull на блоке</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">2 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">лёгкий вес</span>
+      </div>
+      <div class="ex-note">⚠️ Плавное движение. Отдых: 5-7 мин</div>
+      <div class="series" data-id="b-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">4</div>
+      <div class="ex-title">Подъёмы на бицепс</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">2-3 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">5-8 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Руки НЕ выпрямлять и НЕ сгибать полностью</div>
+      <div class="series" data-id="b-4">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-icon">🧘</div>
+    <div class="phase-text"><strong>Заминка:</strong> Растяжка спины, бицепсов — 5 мин</div>
+  </div>
+
+  <button class="reset-btn" onclick="resetChecks('tab-b')">Сбросить все отметки</button>
+</div>
+
+<!-- PROGRAM C -->
+<div class="program" id="tab-c">
+  <div class="meso">
+    <div class="phase">ВХОД — 2-3 серии</div>
+    <div class="detail">Ноги + Лёгкий верх (макс гормоны)</div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-icon">🚣</div>
+    <div class="phase-text"><strong>Разминка:</strong> Гребля 5-7 мин, пульс до 120</div>
+  </div>
+
+  <div class="exercise trigger">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">⚡</div>
+      <div class="ex-title">Приседания — РАЗВИВАЮЩИЕ</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">4-6 серий</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">10-15 кг</span>
+      </div>
+      <div class="ex-note">⚡ Главное упражнение дня! Максимальный гормональный отклик. Отдых: 5-7 мин</div>
+      <div class="series" data-id="c-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С4</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С5</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С6</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">2</div>
+      <div class="ex-title">Румынская тяга</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">2-3 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">10-15 кг</span>
+      </div>
+      <div class="ex-note">⚠️ Колени слегка согнуты, НЕ выпрямлять. Отдых: 5-7 мин</div>
+      <div class="series" data-id="c-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">3</div>
+      <div class="ex-title">Шраги с гантелями</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">1-2 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">8-12 кг</span>
+      </div>
+      <div class="series" data-id="c-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">4</div>
+      <div class="ex-title">Подъёмы перед собой</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">1-2 серии</span>
+        <span class="ex-tag">3 x 30-40 сек</span>
+        <span class="ex-tag">3-5 кг</span>
+      </div>
+      <div class="series" data-id="c-4">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-icon">🧘</div>
+    <div class="phase-text"><strong>Заминка:</strong> Растяжка ног — 5-7 мин</div>
+  </div>
+
+  <button class="reset-btn" onclick="resetChecks('tab-c')">Сбросить все отметки</button>
+</div>
+
+<!-- TIMER BAR -->
+<div class="timer-section">
+  <div>
+    <div class="timer-display" id="timer-display">0:00</div>
+    <div class="timer-label" id="timer-label">Готов</div>
+  </div>
+  <div class="timer-btns">
+    <button class="timer-btn btn-work" onclick="startTimer(40,'ПОДХОД')">▶ Подход 40с</button>
+    <div style="display:flex; gap:6px;">
+      <button class="timer-btn btn-rest" style="flex:1" onclick="startTimer(30,'ОТДЫХ')">⏸ 30с</button>
+      <button class="timer-btn btn-long" style="flex:1" onclick="startTimer(360,'ОТДЫХ 6мин')">⏸ 6м</button>
+    </div>
+    <button class="timer-btn btn-stop" onclick="stopTimer()" style="font-size:12px;padding:6px">⏹ Стоп</button>
+  </div>
+</div>
+
+<script>
+// Tabs
+function showTab(id) {
+  document.querySelectorAll('.program').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const tabs = document.querySelectorAll('.tab');
+  const map = { a: 0, b: 1, c: 2, rules: 3 };
+  if (map[id] !== undefined) tabs[map[id]].classList.add('active');
+}
+
+// Toggle exercise body
+function toggleEx(header) {
+  const body = header.nextElementSibling;
+  body.style.display = body.style.display === 'none' ? 'block' : (body.style.display === 'block' ? 'none' : 'block');
+}
+
+// Reset checkboxes
+function resetChecks(tabId) {
+  document.querySelectorAll('#' + tabId + ' input[type="checkbox"]').forEach(cb => cb.checked = false);
+}
+
+// Timer
+let timerInterval = null;
+let timerSeconds = 0;
+const display = document.getElementById('timer-display');
+const label = document.getElementById('timer-label');
+
+function startTimer(seconds, name) {
+  stopTimer();
+  timerSeconds = seconds;
+  label.textContent = name;
+  display.className = 'timer-display';
+  updateDisplay();
+
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    if (timerSeconds <= 5 && timerSeconds > 0) {
+      display.className = 'timer-display warning';
+    }
+    if (timerSeconds <= 0) {
+      display.className = 'timer-display done';
+      display.textContent = '✓';
+      label.textContent = name + ' — ГОТОВО!';
+      stopTimer();
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 200]);
+    } else {
+      updateDisplay();
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function updateDisplay() {
+  const min = Math.floor(timerSeconds / 60);
+  const sec = timerSeconds % 60;
+  display.textContent = min + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+// Persist checkboxes in localStorage
+document.querySelectorAll('.series input').forEach(cb => {
+  const id = cb.closest('.series').dataset.id;
+  const idx = Array.from(cb.closest('.series').querySelectorAll('input')).indexOf(cb);
+  const key = 'workout-' + id + '-' + idx;
+
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+
+  cb.addEventListener('change', () => {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+
+// Reset also clears localStorage
+const origReset = window.resetChecks;
+window.resetChecks = function(tabId) {
+  document.querySelectorAll('#' + tabId + ' .series').forEach(s => {
+    const id = s.dataset.id;
+    s.querySelectorAll('input').forEach((cb, idx) => {
+      cb.checked = false;
+      localStorage.setItem('workout-' + id + '-' + idx, '0');
+    });
+  });
+};
+</script>
+
+</body>
+</html>
