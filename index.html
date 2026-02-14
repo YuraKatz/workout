@@ -100,6 +100,16 @@ body {
   font-size: 14px; color: var(--warn); padding: 6px 0;
   border-top: 1px solid #333;
 }
+.ex-tech {
+  font-size: 13px; color: var(--muted); padding: 8px 0 4px;
+  line-height: 1.6;
+}
+.ex-tech b { color: var(--accent2); }
+.ex-flow {
+  background: var(--card); padding: 8px 10px; border-radius: 8px;
+  margin-top: 6px; font-size: 13px; color: var(--text);
+  border-left: 3px solid var(--accent2);
+}
 
 /* Series checkboxes */
 .series { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
@@ -133,6 +143,7 @@ body {
 }
 .timer-display.warning { color: var(--warn); }
 .timer-display.done { color: var(--success); }
+.timer-display.prep { color: #c084fc; font-size: 48px; }
 .timer-btns { display: flex; flex-direction: column; gap: 6px; flex: 1; }
 .timer-btn {
   padding: 10px 14px; border: none; border-radius: 10px;
@@ -263,6 +274,10 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Гантели на плечах или перед собой. Ноги на ширине плеч. Присесть неглубоко (10-15°) и качаться вверх-вниз в этом диапазоне. <b>Колени НЕ выпрямлять</b> — мышца всё время под нагрузкой. Темп: 3 сек вниз, 3 сек вверх.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с между подходами → после серии отдых 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="a-trigger" inputmode="decimal" step="0.5" min="0" max="200">
@@ -287,6 +302,10 @@ body {
         <span class="ex-tag">8-12 кг</span>
       </div>
       <div class="ex-note">⚠️ Руки НЕ выпрямлять, гантели НЕ до груди. Отдых: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Лёжа на скамье с наклоном 30°. Гантели в руках, развести в стороны. Жим вверх — <b>руки НЕ выпрямлять до конца</b> (оставить 10-15°). Вниз — <b>НЕ до груди</b>, остановка когда локти на уровне корпуса. Мышца постоянно напряжена. Темп: 3 сек вверх, 3 сек вниз.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="a-1" inputmode="decimal" step="0.5" min="0" max="200">
@@ -314,6 +333,10 @@ body {
         <span class="ex-tag">3-5 кг</span>
       </div>
       <div class="ex-note">⚠️ Руки не опускать полностью, амплитуда до 45°. Отдых: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Стоя, гантели в опущенных руках. Поднять руки в стороны до 45° (НЕ выше плеч!). <b>Руки не опускать</b> полностью вниз — остановка на 15-20° от корпуса. Мышца постоянно в напряжении. Лёгкий вес! Темп: 3 сек вверх, 3 сек вниз.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="a-2" inputmode="decimal" step="0.5" min="0" max="200">
@@ -340,6 +363,10 @@ body {
         <span class="ex-tag">5-8 кг</span>
       </div>
       <div class="ex-note">⚠️ Локти НЕ разгибать полностью</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Лёжа на скамье, гантель (или две) над головой. Опустить за голову сгибая локти — <b>НЕ разгибать полностью</b> наверху. Локти смотрят в потолок, не разводить в стороны. Средняя амплитуда, трицепс всегда под нагрузкой. Темп: 3 сек вниз, 3 сек вверх.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="a-3" inputmode="decimal" step="0.5" min="0" max="200">
@@ -387,6 +414,10 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Та же что в программе A. Гантели на плечах, неглубокий присед 10-15°, качаться вверх-вниз. Колени НЕ выпрямлять. Темп 3+3с.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → после серии отдых 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="b-trigger" inputmode="decimal" step="0.5" min="0" max="200">
@@ -411,6 +442,10 @@ body {
         <span class="ex-tag">лёгкий вес</span>
       </div>
       <div class="ex-note">⚠️ Широкий хват, руки НЕ выпрямлять полностью. Отдых: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Сидя, широкий хват на блоке. Тянуть к верху груди, сводя лопатки. <b>Руки НЕ выпрямлять</b> полностью наверху — оставить 15° сгиба. Внизу задержка 1 сек — почувствовать широчайшие. Темп: 3 сек вниз (тяга), 3 сек вверх (отпускание).
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="b-1" inputmode="decimal" step="0.5" min="0" max="200">
@@ -438,6 +473,10 @@ body {
         <span class="ex-tag">8-10 кг</span>
       </div>
       <div class="ex-note">⚠️ Каждой рукой, средняя амплитуда, спина ровная. Отдых: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Одна рука и колено на скамью, другой рукой тянуть гантель к поясу. Спина ровная, параллельна полу. <b>Средняя амплитуда</b> — не опускать руку полностью и не тянуть слишком высоко. Локоть идёт вдоль корпуса. Каждой рукой отдельно. Темп: 3 сек вверх, 3 сек вниз.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с (каждая рука), отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="b-2" inputmode="decimal" step="0.5" min="0" max="200">
@@ -464,6 +503,10 @@ body {
         <span class="ex-tag">лёгкий вес</span>
       </div>
       <div class="ex-note">⚠️ Плавное движение. Отдых: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> На блоке с верёвочной рукоятью. Тянуть к лицу, разводя руки в стороны. В конечной точке кулаки у висков, локти разведены. <b>Плавно</b>, без рывков. Укрепляет задние дельты и ротаторы плеча. Темп: 3 сек к лицу, 3 сек назад.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="b-3" inputmode="decimal" step="0.5" min="0" max="200">
@@ -489,6 +532,10 @@ body {
         <span class="ex-tag">5-8 кг</span>
       </div>
       <div class="ex-note">⚠️ Руки НЕ выпрямлять и НЕ сгибать полностью</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Стоя, гантели в опущенных руках. Сгибать руки, поднимая гантели. <b>Руки НЕ выпрямлять</b> полностью внизу и <b>НЕ сгибать</b> полностью вверху — средняя амплитуда, бицепс постоянно напряжён. Локти прижаты к корпусу. Темп: 3 сек вверх, 3 сек вниз.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="b-4" inputmode="decimal" step="0.5" min="0" max="200">
@@ -536,6 +583,10 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚡ Главное упражнение дня! Максимальный гормональный отклик. Отдых: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Гантели на плечах или перед собой. Ноги на ширине плеч. Присед неглубокий (10-15°), качаться вверх-вниз. <b>Колени НЕ выпрямлять</b> наверху — мышца постоянно горит! Это день ног → 4-6 серий для максимального гормонального отклика. Темп: 3 сек вниз, 3 сек вверх.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="c-1" inputmode="decimal" step="0.5" min="0" max="200">
@@ -565,6 +616,10 @@ body {
         <span class="ex-tag">10-15 кг</span>
       </div>
       <div class="ex-note">⚠️ Колени слегка согнуты, НЕ выпрямлять. Отдых: 5-7 мин</div>
+      <div class="ex-tech">
+        <b>Техника:</b> Стоя, гантели перед собой. Наклон вперёд с прямой спиной, гантели скользят вдоль ног. <b>Колени слегка согнуты</b> и зафиксированы (НЕ выпрямлять!). Чувствовать растяжение задней поверхности бедра. Средняя амплитуда. Темп: 3 сек вниз, 3 сек вверх.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="c-2" inputmode="decimal" step="0.5" min="0" max="200">
@@ -590,6 +645,10 @@ body {
         <span class="ex-tag">3 x 30-40 сек</span>
         <span class="ex-tag">8-12 кг</span>
       </div>
+      <div class="ex-tech">
+        <b>Техника:</b> Стоя, гантели в опущенных руках. Поднять плечи вверх к ушам (пожимание плечами). <b>Не опускать</b> полностью — трапеция постоянно в напряжении. Руки прямые, работают только плечи. Темп: 3 сек вверх, 3 сек вниз.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="c-3" inputmode="decimal" step="0.5" min="0" max="200">
@@ -614,6 +673,10 @@ body {
         <span class="ex-tag">3 x 30-40 сек</span>
         <span class="ex-tag">3-5 кг</span>
       </div>
+      <div class="ex-tech">
+        <b>Техника:</b> Стоя, гантели перед бёдрами. Поднять прямые руки перед собой до уровня плеч (не выше). <b>Не опускать</b> руки полностью вниз — остановка на 15° от бедра. Передние дельты постоянно напряжены. Лёгкий вес! Темп: 3 сек вверх, 3 сек вниз.
+      </div>
+      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="c-4" inputmode="decimal" step="0.5" min="0" max="200">
@@ -711,10 +774,10 @@ body {
     <div class="timer-label" id="timer-label">Готов</div>
   </div>
   <div class="timer-btns">
-    <button class="timer-btn btn-work" onclick="startTimer(40,'ПОДХОД')">▶ Подход 40с</button>
+    <button class="timer-btn btn-work" onclick="startWorkTimer(40,'ПОДХОД')">▶ Подход 40с</button>
     <div style="display:flex; gap:6px;">
-      <button class="timer-btn btn-rest" style="flex:1" onclick="startTimer(30,'ОТДЫХ')">⏸ 30с</button>
-      <button class="timer-btn btn-long" style="flex:1" onclick="startTimer(360,'ОТДЫХ 6мин')">⏸ 6м</button>
+      <button class="timer-btn btn-rest" style="flex:1" onclick="startTimer(30,'ОТДЫХ между подходами')">⏸ 30с сет</button>
+      <button class="timer-btn btn-long" style="flex:1" onclick="startTimer(360,'ОТДЫХ между СЕРИЯМИ')">⏸ 6м серия</button>
     </div>
     <button class="timer-btn btn-stop" onclick="stopTimer()" style="font-size:12px;padding:6px">⏹ Стоп</button>
   </div>
@@ -742,6 +805,29 @@ function resetChecks(tabId) {
   document.querySelectorAll('#' + tabId + ' input[type="checkbox"]').forEach(cb => cb.checked = false);
 }
 
+// Sound beeps via Web Audio API (no files needed)
+let audioCtx = null;
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+function beep(freq, duration, volume) {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = freq || 800;
+    gain.gain.value = volume || 0.3;
+    osc.start();
+    setTimeout(() => { osc.stop(); }, duration || 200);
+  } catch(e) {}
+}
+function beepStart() { beep(600, 300, 0.3); } // низкий — СТАРТ
+function beepTick() { beep(1000, 100, 0.2); } // короткий — тик последних секунд
+function beepDone() { beep(1200, 150, 0.4); setTimeout(()=>beep(1200, 150, 0.4), 200); setTimeout(()=>beep(1600, 300, 0.4), 400); } // три бипа — ГОТОВО
+
 // Timer
 let timerInterval = null;
 let timerSeconds = 0;
@@ -753,21 +839,50 @@ function startTimer(seconds, name) {
   timerSeconds = seconds;
   label.textContent = name;
   display.className = 'timer-display';
+  beepStart();
   updateDisplay();
 
   timerInterval = setInterval(() => {
     timerSeconds--;
     if (timerSeconds <= 5 && timerSeconds > 0) {
       display.className = 'timer-display warning';
+      beepTick();
     }
     if (timerSeconds <= 0) {
       display.className = 'timer-display done';
       display.textContent = '✓';
       label.textContent = name + ' — ГОТОВО!';
       stopTimer();
+      beepDone();
       if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 200]);
     } else {
       updateDisplay();
+    }
+  }, 1000);
+}
+
+// Подход с пред-таймером: 5 сек приготовься → потом рабочий таймер
+function startWorkTimer(seconds, name) {
+  stopTimer();
+  let prepSec = 5;
+  label.textContent = '🎯 ПРИГОТОВЬСЯ';
+  display.className = 'timer-display prep';
+  display.textContent = prepSec;
+  beepTick();
+  if (navigator.vibrate) navigator.vibrate(100);
+
+  timerInterval = setInterval(() => {
+    prepSec--;
+    if (prepSec > 0) {
+      display.textContent = prepSec;
+      beepTick();
+      if (prepSec <= 2 && navigator.vibrate) navigator.vibrate(50);
+    } else {
+      // Пред-таймер закончился → старт рабочего
+      stopTimer();
+      beepStart();
+      if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+      startTimer(seconds, name);
     }
   }, 1000);
 }
