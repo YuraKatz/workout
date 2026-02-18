@@ -720,6 +720,11 @@ body {
     </div>
 
     <div style="margin-bottom:12px;">
+      <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Хронология (время каждой серии)</label>
+      <div id="log-timeline" style="background:var(--card);padding:10px;border-radius:8px;font-size:14px;line-height:1.8;max-height:250px;overflow-y:auto;"></div>
+    </div>
+
+    <div style="margin-bottom:12px;">
       <label style="font-size:14px;color:var(--muted);display:block;margin-bottom:4px;">Веса (кг) — из карточек</label>
       <div id="log-weights-auto" style="background:var(--card);padding:10px;border-radius:8px;font-size:15px;line-height:1.8;"></div>
     </div>
@@ -900,17 +905,54 @@ function updateDisplay() {
   display.textContent = min + ':' + (sec < 10 ? '0' : '') + sec;
 }
 
-// Persist checkboxes in localStorage
+// Persist checkboxes + timestamps in localStorage
 document.querySelectorAll('.series input').forEach(cb => {
   const id = cb.closest('.series').dataset.id;
   const idx = Array.from(cb.closest('.series').querySelectorAll('input')).indexOf(cb);
   const key = 'workout-' + id + '-' + idx;
+  const tsKey = 'workout-ts-' + id + '-' + idx;
 
   if (localStorage.getItem(key) === '1') cb.checked = true;
 
   cb.addEventListener('change', () => {
     localStorage.setItem(key, cb.checked ? '1' : '0');
+    if (cb.checked) {
+      // Record timestamp when series is checked
+      localStorage.setItem(tsKey, Date.now().toString());
+      // Record workout start time (first checkbox of the session)
+      const prog = id.charAt(0); // 'a', 'b', or 'c'
+      const startKey = 'workout-start-' + prog;
+      if (!localStorage.getItem(startKey)) {
+        localStorage.setItem(startKey, Date.now().toString());
+        updateStartIndicator(prog);
+      }
+    } else {
+      localStorage.removeItem(tsKey);
+    }
   });
+});
+
+// Show start time indicator in header
+function updateStartIndicator(prog) {
+  const startKey = 'workout-start-' + prog;
+  const startTs = localStorage.getItem(startKey);
+  let indicator = document.getElementById('start-indicator');
+  if (startTs) {
+    const t = new Date(parseInt(startTs));
+    const hh = String(t.getHours()).padStart(2,'0');
+    const mm = String(t.getMinutes()).padStart(2,'0');
+    if (!indicator) {
+      indicator = document.createElement('div');
+      indicator.id = 'start-indicator';
+      indicator.style.cssText = 'font-size:13px;color:var(--success);margin-top:4px;';
+      document.querySelector('.header').appendChild(indicator);
+    }
+    indicator.textContent = '⏱ Старт: ' + hh + ':' + mm;
+  }
+}
+// On load, check if there's an active start
+['a','b','c'].forEach(p => {
+  if (localStorage.getItem('workout-start-' + p)) updateStartIndicator(p);
 });
 
 // Persist weight inputs in localStorage
@@ -934,18 +976,23 @@ document.querySelectorAll('.weight-input').forEach(input => {
   });
 });
 
-// Reset also clears localStorage
+// Reset also clears localStorage (checkboxes + timestamps)
 const origReset = window.resetChecks;
 window.resetChecks = function(tabId) {
+  const prog = tabId.replace('tab-', ''); // 'a', 'b', 'c'
   document.querySelectorAll('#' + tabId + ' .series').forEach(s => {
     const id = s.dataset.id;
     s.querySelectorAll('input').forEach((cb, idx) => {
       cb.checked = false;
       localStorage.setItem('workout-' + id + '-' + idx, '0');
+      localStorage.removeItem('workout-ts-' + id + '-' + idx);
     });
   });
+  // Clear start time
+  localStorage.removeItem('workout-start-' + prog);
+  const indicator = document.getElementById('start-indicator');
+  if (indicator) indicator.remove();
   // НЕ сбрасываем веса — они сохраняются между тренировками
-  // (пользователь обычно работает с теми же весами)
 };
 
 // ===== LOG FUNCTIONALITY =====
@@ -974,13 +1021,49 @@ function openLog(prog) {
   logFeel = '';
   document.getElementById('log-program').textContent = 'Программа ' + prog;
   const now = new Date();
-  document.getElementById('log-date').textContent = now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU', {hour:'2-digit',minute:'2-digit'});
+  const startKey = 'workout-start-' + prog.toLowerCase();
+  const startTs = localStorage.getItem(startKey);
+  let dateText = now.toLocaleDateString('ru-RU');
+  if (startTs) {
+    const startTime = fmtTime(startTs);
+    const finishTime = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+    const durMin = Math.round((now.getTime() - parseInt(startTs)) / 60000);
+    dateText += ' | Старт ' + startTime + ' → Финиш ' + finishTime + ' (' + durMin + ' мин)';
+  } else {
+    dateText += ' ' + now.toLocaleTimeString('ru-RU', {hour:'2-digit',minute:'2-digit'});
+  }
+  document.getElementById('log-date').textContent = dateText;
 
   // Count completed series
   const tabId = 'tab-' + prog.toLowerCase();
   const total = document.querySelectorAll('#' + tabId + ' .series input').length;
   const done = document.querySelectorAll('#' + tabId + ' .series input:checked').length;
   document.getElementById('log-series').textContent = done + ' из ' + total;
+
+  // Build timeline
+  const timeline = collectTimeline(prog);
+  const tlDiv = document.getElementById('log-timeline');
+  if (timeline.length > 0) {
+    let prevTs = 0;
+    tlDiv.innerHTML = timeline.map((e, i) => {
+      const w = e.weight ? ' <strong>' + e.weight + ' кг</strong>' : '';
+      let restInfo = '';
+      if (prevTs > 0 && e.ts > 0) {
+        const restSec = Math.round((e.ts - prevTs) / 1000);
+        const restMin = Math.floor(restSec / 60);
+        const restS = restSec % 60;
+        if (restMin > 0) {
+          restInfo = '<span style="color:var(--muted);font-size:12px;"> (+' + restMin + ' мин ' + restS + 'с)</span>';
+        }
+      }
+      prevTs = e.ts;
+      return '<div style="border-left:2px solid var(--accent2);padding-left:8px;margin-bottom:4px;">' +
+        '<span style="color:var(--accent2);font-weight:700;">' + e.time + '</span> ' +
+        e.name + w + ' — серия ' + e.series + restInfo + '</div>';
+    }).join('');
+  } else {
+    tlDiv.innerHTML = '<div style="color:var(--muted);">Нет отмеченных серий с timestamps</div>';
+  }
 
   // Collect weights from exercise cards
   const weights = collectWeights(prog);
@@ -1018,17 +1101,68 @@ function setFeel(btn, val) {
   btn.style.border = '2px solid var(--success)';
 }
 
+function fmtTime(ts) {
+  const d = new Date(parseInt(ts));
+  return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+}
+
+function collectTimeline(prog) {
+  const tabId = 'tab-' + prog.toLowerCase();
+  const seriesEls = document.querySelectorAll('#' + tabId + ' .series');
+  const timeline = [];
+  seriesEls.forEach(s => {
+    const id = s.dataset.id;
+    const exName = exNames[id] || id;
+    const weightInput = s.closest('.ex-body').querySelector('.weight-input');
+    const weight = weightInput ? weightInput.value : '';
+    s.querySelectorAll('input').forEach((cb, idx) => {
+      if (cb.checked) {
+        const tsKey = 'workout-ts-' + id + '-' + idx;
+        const ts = localStorage.getItem(tsKey);
+        timeline.push({
+          time: ts ? fmtTime(ts) : '??:??',
+          ts: ts ? parseInt(ts) : 0,
+          name: exName,
+          weight: weight,
+          series: idx + 1
+        });
+      }
+    });
+  });
+  // Sort by timestamp
+  timeline.sort((a, b) => a.ts - b.ts);
+  return timeline;
+}
+
 function generateLog() {
-  const date = document.getElementById('log-date').textContent;
   const series = document.getElementById('log-series').textContent;
   const weights = collectWeights(logProgram);
   const notes = document.getElementById('log-notes').value.trim();
+  const timeline = collectTimeline(logProgram);
+
+  const prog = logProgram.toLowerCase();
+  const startTs = localStorage.getItem('workout-start-' + prog);
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('ru-RU');
 
   let text = '=== ТРЕНИРОВКА ===\n';
-  text += 'Дата: ' + date + '\n';
+  text += 'Дата: ' + dateStr + '\n';
+  if (startTs) {
+    const startTime = fmtTime(startTs);
+    const finishTime = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+    const durMin = Math.round((now.getTime() - parseInt(startTs)) / 60000);
+    text += 'Старт: ' + startTime + ' | Финиш: ' + finishTime + ' | Длительность: ' + durMin + ' мин\n';
+  }
   text += 'Программа: ' + logProgram + '\n';
   text += 'Серии: ' + series + '\n';
-  if (weights.length > 0) {
+
+  if (timeline.length > 0) {
+    text += 'Лог:\n';
+    timeline.forEach(e => {
+      const w = e.weight ? ' ' + e.weight + ' кг' : '';
+      text += '  ' + e.time + ' ' + e.name + w + ' — серия ' + e.series + '\n';
+    });
+  } else if (weights.length > 0) {
     text += 'Веса:\n';
     weights.forEach(w => { text += '  ' + w.name + ': ' + w.kg + ' кг\n'; });
   }
