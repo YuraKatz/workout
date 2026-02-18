@@ -563,7 +563,7 @@ body {
 <div class="program" id="tab-c">
   <div class="meso">
     <div class="phase">ВХОД — 2-3 серии</div>
-    <div class="detail">Ноги + Лёгкий верх (макс гормоны)</div>
+    <div class="detail">Приседания + Лёгкий верх (макс гормоны)</div>
   </div>
 
   <div class="phase-card">
@@ -607,24 +607,24 @@ body {
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">2</div>
-      <div class="ex-title">Румынская тяга</div>
+      <div class="ex-title">Разводка гантелей лёжа</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
         <span class="ex-tag">2-3 серии</span>
         <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">10-15 кг</span>
+        <span class="ex-tag">5-8 кг</span>
       </div>
-      <div class="ex-note">⚠️ Колени слегка согнуты, НЕ выпрямлять. Отдых: 5-7 мин</div>
+      <div class="ex-note">⚠️ Локти слегка согнуты, НЕ выпрямлять. Отдых: 5-7 мин</div>
       <div class="ex-tech">
-        <b>Техника:</b> Стоя, гантели перед собой. Наклон вперёд с прямой спиной, гантели скользят вдоль ног. <b>Колени слегка согнуты</b> и зафиксированы (НЕ выпрямлять!). Чувствовать растяжение задней поверхности бедра. Средняя амплитуда. Темп: 3 сек вниз, 3 сек вверх.
+        <b>Техника:</b> Лёжа на горизонтальной скамье, гантели над грудью. Развести руки в стороны дугой, <b>локти слегка согнуты</b> и зафиксированы. НЕ опускать ниже уровня плеч. Свести обратно — <b>НЕ до конца</b>, оставить 10-15 см. Грудь постоянно в напряжении. Темп: 3 сек вниз, 3 сек вверх.
       </div>
       <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="c-2" inputmode="decimal" step="0.5" min="0" max="200">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 10-15</span>
+        <span class="weight-hint">рек: 5-8</span>
       </div>
       <div class="series" data-id="c-2">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
@@ -637,27 +637,29 @@ body {
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">3</div>
-      <div class="ex-title">Шраги с гантелями</div>
+      <div class="ex-title">Тяга блока узким хватом</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">1-2 серии</span>
+        <span class="ex-tag">2-3 серии</span>
         <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">8-12 кг</span>
+        <span class="ex-tag">лёгкий вес</span>
       </div>
+      <div class="ex-note">⚠️ Узкий хват, тянуть к животу. Отдых: 5-7 мин</div>
       <div class="ex-tech">
-        <b>Техника:</b> Стоя, гантели в опущенных руках. Поднять плечи вверх к ушам (пожимание плечами). <b>Не опускать</b> полностью — трапеция постоянно в напряжении. Руки прямые, работают только плечи. Темп: 3 сек вверх, 3 сек вниз.
+        <b>Техника:</b> Сидя, узкий хват (V-рукоять или параллельный хват). Тянуть к животу, сводя лопатки. <b>Руки НЕ выпрямлять</b> полностью — оставить 15° сгиба. Корпус неподвижен, работает только спина. Дополняет тягу широким хватом из программы B. Темп: 3 сек к себе, 3 сек назад.
       </div>
       <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
         <input type="number" class="weight-input" data-weight="c-3" inputmode="decimal" step="0.5" min="0" max="200">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 8-12</span>
+        <span class="weight-hint">рек: лёгкий</span>
       </div>
       <div class="series" data-id="c-3">
         <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
         <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
       </div>
     </div>
   </div>
@@ -692,7 +694,7 @@ body {
 
   <div class="phase-card">
     <div class="phase-icon">🧘</div>
-    <div class="phase-text"><strong>Заминка:</strong> Растяжка ног — 5-7 мин</div>
+    <div class="phase-text"><strong>Заминка:</strong> Растяжка верха + ног — 5 мин</div>
   </div>
 
   <button class="reset-btn" onclick="resetChecks('tab-c')">Сбросить все отметки</button>
@@ -959,7 +961,7 @@ function updateStartIndicator(prog) {
 const exNames = {
   'a-trigger':'Приседания (триггер)', 'a-1':'Жим гантелей 30°', 'a-2':'Подъёмы в стороны', 'a-3':'Французский жим',
   'b-trigger':'Приседания (триггер)', 'b-1':'Тяга блока к груди', 'b-2':'Тяга гантели в наклоне', 'b-3':'Face pull', 'b-4':'Подъёмы на бицепс',
-  'c-1':'Приседания (развив.)', 'c-2':'Румынская тяга', 'c-3':'Шраги', 'c-4':'Подъёмы перед собой'
+  'c-1':'Приседания (развив.)', 'c-2':'Разводка гантелей', 'c-3':'Тяга блока узкий', 'c-4':'Подъёмы перед собой'
 };
 
 document.querySelectorAll('.weight-input').forEach(input => {
