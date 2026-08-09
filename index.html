@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Тренировка — Селуянов</title>
+<title>Тренировка AB — зал</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -198,14 +198,13 @@ body {
 <body>
 
 <div class="header">
-  <h1>Статодинамика по Селуянову</h1>
-  <div class="sub">ИЗОТОН для 50+ | Гормональный акцент</div>
+  <h1>Программа AB — зал</h1>
+  <div class="sub">N4 Professional Fitness | 3-4 раза в неделю</div>
 </div>
 
 <div class="tabs">
-  <button class="tab active" onclick="showTab('a')">A Грудь</button>
-  <button class="tab" onclick="showTab('b')">B Спина</button>
-  <button class="tab" onclick="showTab('c')">C Ноги</button>
+  <button class="tab active" onclick="showTab('a')">A Грудь/Трицепс</button>
+  <button class="tab" onclick="showTab('b')">B Спина/Бицепс</button>
   <button class="tab" onclick="showTab('rules')">Правила</button>
 </div>
 
@@ -213,39 +212,49 @@ body {
 <div class="program" id="tab-rules">
   <div style="margin-top:12px">
     <div class="rules" style="border-left-color: var(--accent)">
-      <summary style="color: var(--accent)">Параметры статодинамики</summary>
+      <summary style="color: var(--accent)">Режим выполнения</summary>
       <ul>
-        <li><strong>Вес:</strong> 20-40% от 1RM (5-12 кг)</li>
         <li><strong>Темп:</strong> 3 сек вверх + 3 сек вниз</li>
-        <li><strong>Подход:</strong> 30-40 сек → до жжения</li>
-        <li><strong>Серия:</strong> 3 подхода, отдых 30 сек</li>
-        <li><strong>Между сериями:</strong> 5-7 мин</li>
-        <li><strong>Амплитуда:</strong> частичная, мышца не расслабляется</li>
-        <li><strong>Дыхание:</strong> НИКОГДА не задерживать!</li>
+        <li><strong>Локауты:</strong> НЕТ — колени и локти не разгибать до конца</li>
+        <li><strong>Вес:</strong> последние 2-3 повтора трудные, техника держится</li>
+        <li><strong>Отдых между подходами:</strong> 90-120 сек</li>
+        <li><strong>Дыхание:</strong> НИКОГДА не задерживать</li>
+        <li><strong>Кардио:</strong> 10 мин, +5 мин каждую неделю до 20</li>
       </ul>
     </div>
     <div class="rules" style="border-left-color: var(--warn)">
       <summary style="color: var(--warn)">Безопасность</summary>
       <ul>
-        <li>BB &lt; 30 → тонизирующая (1-2 серии)</li>
-        <li>BB &lt; 20 → отдых, без тренировки</li>
-        <li>Пульс цель: 90-110 bpm</li>
-        <li>Плечи: амплитуда до 45°, без жима стоя</li>
-        <li>Колени: частичная амплитуда, без прыжков</li>
+        <li>Плечи: жим только в тренажёре, НЕ штанга</li>
+        <li>Плечи: тяга блока ТОЛЬКО к груди, не за голову</li>
+        <li>Колени: гакк и разгибания — без локаута, малый вес</li>
+        <li>Боль → остановка сразу, не дотерпливать подход</li>
+        <li>BB &lt; 30 → 2 подхода вместо 3-4</li>
+        <li>BB &lt; 20 → отдых, только ходьба</li>
+        <li>Пульс цель: 100-120 · максимум: 145</li>
+      </ul>
+    </div>
+    <div class="rules" style="border-left-color: var(--accent2)">
+      <summary style="color: var(--accent2)">Спросить тренера</summary>
+      <ul>
+        <li>Плечей нет вообще — это намеренно? Просить подъёмы в стороны до 45°</li>
+        <li>Выпады при коленях — чем заменить? Жим ногами с укороченной амплитудой</li>
+        <li>Пустые строки: A грудь 3-4, B спина 3 — забыл или добавит?</li>
+        <li>Разгибание ног при коленях — какой вес и амплитуда?</li>
       </ul>
     </div>
     <div class="rules" style="border-left-color: var(--success)">
-      <summary style="color: var(--success)">Ноги первыми = гормоны</summary>
+      <summary style="color: var(--success)">Прогрессия</summary>
       <ul>
-        <li>Каждая тренировка начинается с приседаний</li>
-        <li>Ноги выделяют 4x больше гормонов чем руки</li>
-        <li>1 серия приседаний → тестостерон + GH</li>
-        <li>Затем целевые мышцы "захватывают" гормоны</li>
+        <li><strong>Недели 1-3:</strong> подбор весов, записать каждый</li>
+        <li><strong>Дальше:</strong> добрать повторы до верха диапазона</li>
+        <li><strong>Потом:</strong> +2.5-5 кг, повторы падают на низ</li>
+        <li>BB до и через 2 часа после — цель лучше чем -20</li>
       </ul>
     </div>
     <div class="meso">
-      <div class="phase" id="meso-phase">ВХОД</div>
-      <div class="detail" id="meso-detail">Недели 1-2: тонизирующие, 2-3 серии на группу</div>
+      <div class="phase">ВХОД</div>
+      <div class="detail">Недели 1-3: подбор весов, август 2026</div>
     </div>
   </div>
 </div>
@@ -253,70 +262,42 @@ body {
 <!-- PROGRAM A -->
 <div class="program active" id="tab-a">
   <div class="meso">
-    <div class="phase" id="meso-a">ВХОД — 2-3 серии</div>
-    <div class="detail">Грудь / Плечи / Трицепс</div>
+    <div class="phase">A — Грудь / Трицепс / Ноги</div>
+    <div class="detail">Пресс + кардио в конце</div>
   </div>
 
   <div class="phase-card">
-    <div class="phase-icon">🚣</div>
-    <div class="phase-text"><strong>Разминка:</strong> Гребля 5-7 мин, пульс до 120</div>
-  </div>
-
-  <div class="exercise trigger">
-    <div class="ex-header" onclick="toggleEx(this)">
-      <div class="ex-num">⚡</div>
-      <div class="ex-title">Приседания — гормональный триггер</div>
-    </div>
-    <div class="ex-body">
-      <div class="ex-detail">
-        <span class="ex-tag">1 серия</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">10-15 кг</span>
-      </div>
-      <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
-      <div class="ex-tech">
-        <b>Техника:</b> Гантели на плечах или перед собой. Ноги на ширине плеч. Присесть неглубоко (10-15°) и качаться вверх-вниз в этом диапазоне. <b>Колени НЕ выпрямлять</b> — мышца всё время под нагрузкой. Темп: 3 сек вниз, 3 сек вверх.
-      </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с между подходами → после серии отдых 5-7 мин</div>
-      <div class="weight-row">
-        <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="a-trigger" inputmode="decimal" step="0.5" min="0" max="200">
-        <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 10-15</span>
-      </div>
-      <div class="series" data-id="a-trigger">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">Серия 1</span></label>
-      </div>
-    </div>
+    <div class="phase-icon">🏃</div>
+    <div class="phase-text"><strong>Разминка:</strong> Эллипс или дорожка 10 мин, пульс до 120</div>
   </div>
 
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">1</div>
-      <div class="ex-title">Жим гантелей 30°</div>
+      <div class="ex-title">Жим на грудь в тренажёре</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">3-4 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">8-12 кг</span>
+        <span class="ex-tag">4 подхода</span>
+        <span class="ex-tag">12-15 повторов</span>
+        <span class="ex-tag">селектор</span>
       </div>
-      <div class="ex-note">⚠️ Руки НЕ выпрямлять, гантели НЕ до груди. Отдых: 5-7 мин</div>
+      <div class="ex-note">⚠️ Руки НЕ выпрямлять полностью — плечи</div>
       <div class="ex-tech">
-        <b>Техника:</b> Лёжа на скамье с наклоном 30°. Гантели в руках, развести в стороны. Жим вверх — <b>руки НЕ выпрямлять до конца</b> (оставить 10-15°). Вниз — <b>НЕ до груди</b>, остановка когда локти на уровне корпуса. Мышца постоянно напряжена. Темп: 3 сек вверх, 3 сек вниз.
+        <b>Иврит:</b> לחיצת חזה סלקטור<br>
+        <b>Техника:</b> Тренажёр, не штанга — плечо в безопасной траектории. Жим вперёд медленно, 3 сек. Назад — 3 сек, не бросать вес на стек. Локти не выпрямлять до конца.
       </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="a-1" inputmode="decimal" step="0.5" min="0" max="200">
+        <input type="number" class="weight-input" data-weight="a-chest-1" inputmode="decimal" step="2.5" min="0" max="300">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 8-12</span>
+        <span class="weight-hint">подбор</span>
       </div>
-      <div class="series" data-id="a-1">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С4</span></label>
+      <div class="series" data-id="a-chest-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П4</span></label>
       </div>
     </div>
   </div>
@@ -324,66 +305,241 @@ body {
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">2</div>
-      <div class="ex-title">Подъёмы в стороны</div>
+      <div class="ex-title">Бабочка (пек-дек)</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">2-3 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">3-5 кг</span>
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">15 повторов</span>
       </div>
-      <div class="ex-note">⚠️ Руки не опускать полностью, амплитуда до 45°. Отдых: 5-7 мин</div>
+      <div class="ex-note">⚠️ Не растягивать амплитуду до предела — плечи</div>
       <div class="ex-tech">
-        <b>Техника:</b> Стоя, гантели в опущенных руках. Поднять руки в стороны до 45° (НЕ выше плеч!). <b>Руки не опускать</b> полностью вниз — остановка на 15-20° от корпуса. Мышца постоянно в напряжении. Лёгкий вес! Темп: 3 сек вверх, 3 сек вниз.
+        <b>Иврит:</b> פרפר חזה מכונה<br>
+        <b>Техника:</b> Сведение рук перед грудью. Разведение — только до уровня корпуса, дальше не уходить. Медленно в обе стороны.
       </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="a-2" inputmode="decimal" step="0.5" min="0" max="200">
+        <input type="number" class="weight-input" data-weight="a-chest-2" inputmode="decimal" step="2.5" min="0" max="300">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 3-5</span>
+        <span class="weight-hint">подбор</span>
       </div>
-      <div class="series" data-id="a-2">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      <div class="series" data-id="a-chest-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-card" style="border-color:var(--accent2)">
+    <div class="phase-icon">✌️</div>
+    <div class="phase-text"><strong>Трицепс:</strong> выбрать <strong>2 упражнения из 3</strong> · בחירת 2 תרגילים</div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">3</div>
+      <div class="ex-title">Разгибание на канате (кроссовер)</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> פשיטת מרפקים כנגד חבל במכונה (בכבל קרוס)<br>
+        <b>Техника:</b> Верхний блок, канат. Локти прижаты к корпусу и не двигаются. Разгибание вниз, локти не в замок. Возврат медленный.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-tri-1" inputmode="decimal" step="2.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="a-tri-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
       </div>
     </div>
   </div>
 
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
-      <div class="ex-num">3</div>
-      <div class="ex-title">Французский жим лёжа</div>
+      <div class="ex-num">4</div>
+      <div class="ex-title">Разгибание из-за головы</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">2-3 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">5-8 кг</span>
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
       </div>
-      <div class="ex-note">⚠️ Локти НЕ разгибать полностью</div>
+      <div class="ex-note">⚠️ ОСТОРОЖНО с плечами — малый вес. При дискомфорте не делать, взять другие 2 из трёх</div>
       <div class="ex-tech">
-        <b>Техника:</b> Лёжа на скамье, гантель (или две) над головой. Опустить за голову сгибая локти — <b>НЕ разгибать полностью</b> наверху. Локти смотрят в потолок, не разводить в стороны. Средняя амплитуда, трицепс всегда под нагрузкой. Темп: 3 сек вниз, 3 сек вверх.
+        <b>Иврит:</b> פשיטת מרפקים כנגד חבל במכונה (בכבל קרוס) מעל הראש<br>
+        <b>Техника:</b> Спиной к блоку, канат над головой. Плечи в вытянутом положении — это как раз то, что твоим сухожилиям не нравится. Начинать с минимума.
       </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="a-3" inputmode="decimal" step="0.5" min="0" max="200">
+        <input type="number" class="weight-input" data-weight="a-tri-2" inputmode="decimal" step="2.5" min="0" max="200">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 5-8</span>
+        <span class="weight-hint">минимум</span>
       </div>
-      <div class="series" data-id="a-3">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      <div class="series" data-id="a-tri-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">5</div>
+      <div class="ex-title">Французский жим (W-гриф / гантели)</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+      </div>
+      <div class="ex-note">⚠️ Локти не разгибать полностью</div>
+      <div class="ex-tech">
+        <b>Иврит:</b> לחיצה צרפתית מוט V / דאמבלים<br>
+        <b>Техника:</b> Лёжа. Локти смотрят вверх и стоят на месте, двигается только предплечье. Опускать до лба, не за голову.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-tri-3" inputmode="decimal" step="2.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="a-tri-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-card" style="border-color:var(--accent2)">
+    <div class="phase-icon">🦵</div>
+    <div class="phase-text"><strong>Ноги</strong> — все три</div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">6</div>
+      <div class="ex-title">Гакк-присед</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12-15 повторов</span>
+      </div>
+      <div class="ex-note">⚠️ Частичная амплитуда, колени НЕ в локаут</div>
+      <div class="ex-tech">
+        <b>Иврит:</b> האק סקוואט / Hack squat<br>
+        <b>Техника:</b> Спина прижата к платформе. Опускаться до угла, где колено не болит — глубже не надо. Вверх — не выпрямлять до конца, оставить сгиб.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-legs-1" inputmode="decimal" step="2.5" min="0" max="300">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="a-legs-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">7</div>
+      <div class="ex-title">Разгибание ног в тренажёре</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12-15 повторов</span>
+      </div>
+      <div class="ex-note">⚠️ Малый вес, без рывка в верхней точке — спорное упражнение при коленях</div>
+      <div class="ex-tech">
+        <b>Иврит:</b> פשיטת ברכיים במכונה<br>
+        <b>Техника:</b> Разгибать плавно, в верхней точке не фиксировать замок. Если в колене щёлкает или тянет — уменьшить вес или сократить амплитуду.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-legs-2" inputmode="decimal" step="2.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">малый</span>
+      </div>
+      <div class="series" data-id="a-legs-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise trigger">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">8</div>
+      <div class="ex-title">Выпады — под вопросом</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">8-10 повторов</span>
+      </div>
+      <div class="ex-note">⚠️ Самое нагруженное на колено во всей программе. Просить у тренера замену: жим ногами с укороченной амплитудой</div>
+      <div class="ex-tech">
+        <b>Иврит:</b> לאנג'ים חופשי<br>
+        <b>Техника:</b> Если делаешь до разговора с тренером — без веса, короткий шаг, колено не выходит за носок, опускаться неглубоко.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="a-legs-3" inputmode="decimal" step="0.5" min="0" max="100">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">0 = без веса</span>
+      </div>
+      <div class="series" data-id="a-legs-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">9</div>
+      <div class="ex-title">Пресс — 3 упражнения подряд</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 круга</span>
+        <span class="ex-tag">10-12 повторов</span>
+        <span class="ex-tag">без отдыха внутри круга</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> לבצע תרגילי בטן 10-12 חז, 3 תרגילים ולבצע ברצף 3 סטים<br>
+        <b>Техника:</b> Три упражнения подряд без паузы = один круг. Отдых только между кругами.
+      </div>
+      <div class="series" data-id="a-press">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Круг 1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Круг 2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Круг 3</span></label>
       </div>
     </div>
   </div>
 
   <div class="phase-card">
     <div class="phase-icon">🧘</div>
-    <div class="phase-text"><strong>Заминка:</strong> Растяжка грудных, плеч, трицепсов — 5 мин</div>
+    <div class="phase-text"><strong>Заминка:</strong> растяжка груди, трицепса, ног — 5 мин</div>
   </div>
 
   <button class="reset-btn" onclick="resetChecks('tab-a')">Сбросить все отметки</button>
@@ -393,70 +549,40 @@ body {
 <!-- PROGRAM B -->
 <div class="program" id="tab-b">
   <div class="meso">
-    <div class="phase">ВХОД — 2-3 серии</div>
-    <div class="detail">Спина / Бицепс</div>
+    <div class="phase">B — Спина / Бицепс / Ноги</div>
+    <div class="detail">Пресс + кардио в конце</div>
   </div>
 
   <div class="phase-card">
-    <div class="phase-icon">🚣</div>
-    <div class="phase-text"><strong>Разминка:</strong> Гребля 5-7 мин, пульс до 120</div>
-  </div>
-
-  <div class="exercise trigger">
-    <div class="ex-header" onclick="toggleEx(this)">
-      <div class="ex-num">⚡</div>
-      <div class="ex-title">Приседания — гормональный триггер</div>
-    </div>
-    <div class="ex-body">
-      <div class="ex-detail">
-        <span class="ex-tag">1 серия</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">10-15 кг</span>
-      </div>
-      <div class="ex-note">⚠️ Амплитуда 10-15°, колени НЕ выпрямлять. Отдых после: 5-7 мин</div>
-      <div class="ex-tech">
-        <b>Техника:</b> Та же что в программе A. Гантели на плечах, неглубокий присед 10-15°, качаться вверх-вниз. Колени НЕ выпрямлять. Темп 3+3с.
-      </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → после серии отдых 5-7 мин</div>
-      <div class="weight-row">
-        <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="b-trigger" inputmode="decimal" step="0.5" min="0" max="200">
-        <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 10-15</span>
-      </div>
-      <div class="series" data-id="b-trigger">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">Серия 1</span></label>
-      </div>
-    </div>
+    <div class="phase-icon">🏃</div>
+    <div class="phase-text"><strong>Разминка:</strong> Эллипс или дорожка 10 мин, пульс до 120</div>
   </div>
 
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">1</div>
-      <div class="ex-title">Тяга блока к груди</div>
+      <div class="ex-title">Тяга верхнего блока к груди</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">3-4 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">лёгкий вес</span>
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">10-12 повторов</span>
       </div>
-      <div class="ex-note">⚠️ Широкий хват, руки НЕ выпрямлять полностью. Отдых: 5-7 мин</div>
+      <div class="ex-note">⚠️ ТОЛЬКО к груди. Никогда за голову — это прямой риск для сухожилий</div>
       <div class="ex-tech">
-        <b>Техника:</b> Сидя, широкий хват на блоке. Тянуть к верху груди, сводя лопатки. <b>Руки НЕ выпрямлять</b> полностью наверху — оставить 15° сгиба. Внизу задержка 1 сек — почувствовать широчайшие. Темп: 3 сек вниз (тяга), 3 сек вверх (отпускание).
+        <b>Иврит:</b> משיכת פולי עליון במכונה (למעלה)<br>
+        <b>Техника:</b> Корпус слегка назад, тянуть к верху груди. Локти вниз, лопатки сводить. Возврат медленный, руки не выпрямлять полностью.
       </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="b-1" inputmode="decimal" step="0.5" min="0" max="200">
+        <input type="number" class="weight-input" data-weight="b-back-1" inputmode="decimal" step="2.5" min="0" max="300">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: лёгкий</span>
+        <span class="weight-hint">подбор</span>
       </div>
-      <div class="series" data-id="b-1">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С4</span></label>
+      <div class="series" data-id="b-back-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
       </div>
     </div>
   </div>
@@ -464,202 +590,52 @@ body {
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">2</div>
-      <div class="ex-title">Тяга гантели в наклоне</div>
+      <div class="ex-title">Горизонтальная тяга узким хватом</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">2-3 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">8-10 кг</span>
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
       </div>
-      <div class="ex-note">⚠️ Каждой рукой, средняя амплитуда, спина ровная. Отдых: 5-7 мин</div>
       <div class="ex-tech">
-        <b>Техника:</b> Одна рука и колено на скамью, другой рукой тянуть гантель к поясу. Спина ровная, параллельна полу. <b>Средняя амплитуда</b> — не опускать руку полностью и не тянуть слишком высоко. Локоть идёт вдоль корпуса. Каждой рукой отдельно. Темп: 3 сек вверх, 3 сек вниз.
+        <b>Иврит:</b> משיכה חתירה צרה<br>
+        <b>Техника:</b> Спина прямая, не раскачиваться корпусом. Тянуть к животу, лопатки сводить в конце. Возврат медленный.
       </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с (каждая рука), отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="b-2" inputmode="decimal" step="0.5" min="0" max="200">
+        <input type="number" class="weight-input" data-weight="b-back-2" inputmode="decimal" step="2.5" min="0" max="300">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 8-10</span>
+        <span class="weight-hint">подбор</span>
       </div>
-      <div class="series" data-id="b-2">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
-      </div>
-    </div>
-  </div>
-
-  <div class="exercise">
-    <div class="ex-header" onclick="toggleEx(this)">
-      <div class="ex-num">3</div>
-      <div class="ex-title">Face pull на блоке</div>
-    </div>
-    <div class="ex-body">
-      <div class="ex-detail">
-        <span class="ex-tag">2 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">лёгкий вес</span>
-      </div>
-      <div class="ex-note">⚠️ Плавное движение. Отдых: 5-7 мин</div>
-      <div class="ex-tech">
-        <b>Техника:</b> На блоке с верёвочной рукоятью. Тянуть к лицу, разводя руки в стороны. В конечной точке кулаки у висков, локти разведены. <b>Плавно</b>, без рывков. Укрепляет задние дельты и ротаторы плеча. Темп: 3 сек к лицу, 3 сек назад.
-      </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
-      <div class="weight-row">
-        <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="b-3" inputmode="decimal" step="0.5" min="0" max="200">
-        <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: лёгкий</span>
-      </div>
-      <div class="series" data-id="b-3">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+      <div class="series" data-id="b-back-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
       </div>
     </div>
-  </div>
-
-  <div class="exercise">
-    <div class="ex-header" onclick="toggleEx(this)">
-      <div class="ex-num">4</div>
-      <div class="ex-title">Подъёмы на бицепс</div>
-    </div>
-    <div class="ex-body">
-      <div class="ex-detail">
-        <span class="ex-tag">2-3 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">5-8 кг</span>
-      </div>
-      <div class="ex-note">⚠️ Руки НЕ выпрямлять и НЕ сгибать полностью</div>
-      <div class="ex-tech">
-        <b>Техника:</b> Стоя, гантели в опущенных руках. Сгибать руки, поднимая гантели. <b>Руки НЕ выпрямлять</b> полностью внизу и <b>НЕ сгибать</b> полностью вверху — средняя амплитуда, бицепс постоянно напряжён. Локти прижаты к корпусу. Темп: 3 сек вверх, 3 сек вниз.
-      </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
-      <div class="weight-row">
-        <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="b-4" inputmode="decimal" step="0.5" min="0" max="200">
-        <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 5-8</span>
-      </div>
-      <div class="series" data-id="b-4">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
-      </div>
-    </div>
-  </div>
-
-  <div class="phase-card">
-    <div class="phase-icon">🧘</div>
-    <div class="phase-text"><strong>Заминка:</strong> Растяжка спины, бицепсов — 5 мин</div>
-  </div>
-
-  <button class="reset-btn" onclick="resetChecks('tab-b')">Сбросить все отметки</button>
-  <button class="reset-btn" style="background:var(--accent);color:#fff;border-color:var(--accent)" onclick="openLog('B')">📝 Записать результат</button>
-</div>
-
-<!-- PROGRAM C -->
-<div class="program" id="tab-c">
-  <div class="meso">
-    <div class="phase">ВХОД — 2-3 серии</div>
-    <div class="detail">Приседания + Лёгкий верх (макс гормоны)</div>
-  </div>
-
-  <div class="phase-card">
-    <div class="phase-icon">🚣</div>
-    <div class="phase-text"><strong>Разминка:</strong> Гребля 5-7 мин, пульс до 120</div>
   </div>
 
   <div class="exercise trigger">
     <div class="ex-header" onclick="toggleEx(this)">
-      <div class="ex-num">⚡</div>
-      <div class="ex-title">Приседания — РАЗВИВАЮЩИЕ</div>
-    </div>
-    <div class="ex-body">
-      <div class="ex-detail">
-        <span class="ex-tag">4-6 серий</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">10-15 кг</span>
-      </div>
-      <div class="ex-note">⚡ Главное упражнение дня! Максимальный гормональный отклик. Отдых: 5-7 мин</div>
-      <div class="ex-tech">
-        <b>Техника:</b> Гантели на плечах или перед собой. Ноги на ширине плеч. Присед неглубокий (10-15°), качаться вверх-вниз. <b>Колени НЕ выпрямлять</b> наверху — мышца постоянно горит! Это день ног → 4-6 серий для максимального гормонального отклика. Темп: 3 сек вниз, 3 сек вверх.
-      </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
-      <div class="weight-row">
-        <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="c-1" inputmode="decimal" step="0.5" min="0" max="200">
-        <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 10-15</span>
-      </div>
-      <div class="series" data-id="c-1">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С4</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С5</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С6</span></label>
-      </div>
-    </div>
-  </div>
-
-  <div class="exercise">
-    <div class="ex-header" onclick="toggleEx(this)">
-      <div class="ex-num">2</div>
-      <div class="ex-title">Разводка гантелей лёжа</div>
-    </div>
-    <div class="ex-body">
-      <div class="ex-detail">
-        <span class="ex-tag">2-3 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">5-8 кг</span>
-      </div>
-      <div class="ex-note">⚠️ Локти слегка согнуты, НЕ выпрямлять. Отдых: 5-7 мин</div>
-      <div class="ex-tech">
-        <b>Техника:</b> Лёжа на горизонтальной скамье, гантели над грудью. Развести руки в стороны дугой, <b>локти слегка согнуты</b> и зафиксированы. НЕ опускать ниже уровня плеч. Свести обратно — <b>НЕ до конца</b>, оставить 10-15 см. Грудь постоянно в напряжении. Темп: 3 сек вниз, 3 сек вверх.
-      </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
-      <div class="weight-row">
-        <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="c-2" inputmode="decimal" step="0.5" min="0" max="200">
-        <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 5-8</span>
-      </div>
-      <div class="series" data-id="c-2">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
-      </div>
-    </div>
-  </div>
-
-  <div class="exercise">
-    <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">3</div>
-      <div class="ex-title">Тяга блока узким хватом</div>
+      <div class="ex-title">Пустая строка — спросить тренера</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">2-3 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">лёгкий вес</span>
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
       </div>
-      <div class="ex-note">⚠️ Узкий хват, тянуть к животу. Отдых: 5-7 мин</div>
-      <div class="ex-tech">
-        <b>Техника:</b> Сидя, узкий хват (V-рукоять или параллельный хват). Тянуть к животу, сводя лопатки. <b>Руки НЕ выпрямлять</b> полностью — оставить 15° сгиба. Корпус неподвижен, работает только спина. Дополняет тягу широким хватом из программы B. Темп: 3 сек к себе, 3 сек назад.
-      </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
+      <div class="ex-note">⚠️ В PDF строка 3 в блоке спины оставлена пустой — подходы и повторы проставлены, упражнение нет. Спросить, что сюда идёт</div>
       <div class="weight-row">
         <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="c-3" inputmode="decimal" step="0.5" min="0" max="200">
+        <input type="number" class="weight-input" data-weight="b-back-3" inputmode="decimal" step="2.5" min="0" max="300">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: лёгкий</span>
+        <span class="weight-hint">—</span>
       </div>
-      <div class="series" data-id="c-3">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С3</span></label>
+      <div class="series" data-id="b-back-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
       </div>
     </div>
   </div>
@@ -667,38 +643,240 @@ body {
   <div class="exercise">
     <div class="ex-header" onclick="toggleEx(this)">
       <div class="ex-num">4</div>
-      <div class="ex-title">Подъёмы перед собой</div>
+      <div class="ex-title">Тяга гантели в наклоне (пила)</div>
     </div>
     <div class="ex-body">
       <div class="ex-detail">
-        <span class="ex-tag">1-2 серии</span>
-        <span class="ex-tag">3 x 30-40 сек</span>
-        <span class="ex-tag">3-5 кг</span>
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+        <span class="ex-tag">каждой рукой</span>
       </div>
       <div class="ex-tech">
-        <b>Техника:</b> Стоя, гантели перед бёдрами. Поднять прямые руки перед собой до уровня плеч (не выше). <b>Не опускать</b> руки полностью вниз — остановка на 15° от бедра. Передние дельты постоянно напряжены. Лёгкий вес! Темп: 3 сек вверх, 3 сек вниз.
+        <b>Иврит:</b> חתירה כנגד משקולות (מסור), יד - יד<br>
+        <b>Техника:</b> Колено и рука на скамью, спина ровная и параллельна полу. Тянуть к поясу, локоть вдоль корпуса. Не скручивать корпус.
       </div>
-      <div class="ex-flow">🔄 Серия = 3 подхода × 30-40с, отдых 30с → между сериями 5-7 мин</div>
       <div class="weight-row">
         <label>Вес:</label>
-        <input type="number" class="weight-input" data-weight="c-4" inputmode="decimal" step="0.5" min="0" max="200">
+        <input type="number" class="weight-input" data-weight="b-back-4" inputmode="decimal" step="0.5" min="0" max="100">
         <span class="weight-unit">кг</span>
-        <span class="weight-hint">рек: 3-5</span>
+        <span class="weight-hint">подбор</span>
       </div>
-      <div class="series" data-id="c-4">
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С1</span></label>
-        <label><input type="checkbox"><span class="check"></span><span class="stext">С2</span></label>
+      <div class="series" data-id="b-back-4">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-card" style="border-color:var(--accent2)">
+    <div class="phase-icon">💪</div>
+    <div class="phase-text"><strong>Бицепс:</strong> выбрать <strong>2 упражнения из 3</strong> · בחירת 2 תרגילים</div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">5</div>
+      <div class="ex-title">Сгибания с грифом стоя (прямой / W)</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> כפיפת מרפקים כנגד מוט ישר / W (עמידה)<br>
+        <b>Техника:</b> Локти прижаты к корпусу, не выносить вперёд. Корпусом не помогать. Внизу руки не выпрямлять до конца.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-bi-1" inputmode="decimal" step="2.5" min="0" max="150">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="b-bi-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">6</div>
+      <div class="ex-title">Сгибания в тренажёре / свободные</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+        <span class="ex-tag">чередовать</span>
+      </div>
+      <div class="ex-note">⚠️ Тренер просил чередовать от тренировки к тренировке: раз тренажёр, раз свободные</div>
+      <div class="ex-tech">
+        <b>Иврит:</b> כפיפת מרפקים במכונה כנגד מוט / משקולות חופשי (לגוון מאימון לאימון)
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-bi-2" inputmode="decimal" step="2.5" min="0" max="150">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="b-bi-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">7</div>
+      <div class="ex-title">Молотки с гантелями</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> כפיפת מרפקים (פטישים) כנגד משקולות<br>
+        <b>Техника:</b> Ладони смотрят друг на друга, кисть не разворачивать. Локти на месте.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-bi-3" inputmode="decimal" step="0.5" min="0" max="100">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="b-bi-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-card" style="border-color:var(--accent2)">
+    <div class="phase-icon">🦵</div>
+    <div class="phase-text"><strong>Ноги</strong> — все три</div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">8</div>
+      <div class="ex-title">Сгибание ног в тренажёре</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">8-12 повторов</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> כפיפת ברכיים במכונה<br>
+        <b>Техника:</b> Таз прижат, не отрывать. Сгибание плавное, возврат под контролем — не бросать вес.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-legs-1" inputmode="decimal" step="2.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="b-legs-1">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">9</div>
+      <div class="ex-title">Отведения бедра (abductor)</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> מרחיקים<br>
+        <b>Техника:</b> Разведение коленей наружу. Спина прижата к спинке, не откидываться.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-legs-2" inputmode="decimal" step="2.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="b-legs-2">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">10</div>
+      <div class="ex-title">Приведения бедра (adductor)</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 подхода</span>
+        <span class="ex-tag">12 повторов</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> מקרבים<br>
+        <b>Техника:</b> Сведение коленей. Не бросать на возврате — растяжение приводящих делать плавно.
+      </div>
+      <div class="weight-row">
+        <label>Вес:</label>
+        <input type="number" class="weight-input" data-weight="b-legs-3" inputmode="decimal" step="2.5" min="0" max="200">
+        <span class="weight-unit">кг</span>
+        <span class="weight-hint">подбор</span>
+      </div>
+      <div class="series" data-id="b-legs-3">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">П3</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-header" onclick="toggleEx(this)">
+      <div class="ex-num">11</div>
+      <div class="ex-title">Пресс — 3 упражнения подряд</div>
+    </div>
+    <div class="ex-body">
+      <div class="ex-detail">
+        <span class="ex-tag">3 круга</span>
+        <span class="ex-tag">10-12 повторов</span>
+        <span class="ex-tag">без отдыха внутри круга</span>
+      </div>
+      <div class="ex-tech">
+        <b>Иврит:</b> לבצע תרגילי בטן 10-12 חז, 3 תרגילים ולבצע ברצף 3 סטים
+      </div>
+      <div class="series" data-id="b-press">
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Круг 1</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Круг 2</span></label>
+        <label><input type="checkbox"><span class="check"></span><span class="stext">Круг 3</span></label>
       </div>
     </div>
   </div>
 
   <div class="phase-card">
     <div class="phase-icon">🧘</div>
-    <div class="phase-text"><strong>Заминка:</strong> Растяжка верха + ног — 5 мин</div>
+    <div class="phase-text"><strong>Заминка:</strong> растяжка спины, бицепса, ног — 5 мин</div>
   </div>
 
-  <button class="reset-btn" onclick="resetChecks('tab-c')">Сбросить все отметки</button>
-  <button class="reset-btn" style="background:var(--accent);color:#fff;border-color:var(--accent)" onclick="openLog('C')">📝 Записать результат</button>
+  <button class="reset-btn" onclick="resetChecks('tab-b')">Сбросить все отметки</button>
+  <button class="reset-btn" style="background:var(--accent);color:#fff;border-color:var(--accent)" onclick="openLog('B')">📝 Записать результат</button>
 </div>
 
 <!-- LOG MODAL -->
@@ -781,10 +959,10 @@ body {
     <div class="timer-label" id="timer-label">Готов</div>
   </div>
   <div class="timer-btns">
-    <button class="timer-btn btn-work" onclick="startWorkTimer(40,'ПОДХОД')">▶ Подход 40с</button>
+    <button class="timer-btn btn-work" onclick="startWorkTimer(75,'ПОДХОД — темп 3+3')">▶ Подход ~75с</button>
     <div style="display:flex; gap:6px;">
-      <button class="timer-btn btn-rest" style="flex:1" onclick="startTimer(30,'ОТДЫХ между подходами')">⏸ 30с сет</button>
-      <button class="timer-btn btn-long" style="flex:1" onclick="startTimer(360,'ОТДЫХ между СЕРИЯМИ')">⏸ 6м серия</button>
+      <button class="timer-btn btn-rest" style="flex:1" onclick="startTimer(90,'ОТДЫХ между подходами')">⏸ 90с</button>
+      <button class="timer-btn btn-long" style="flex:1" onclick="startTimer(120,'ОТДЫХ между подходами')">⏸ 2 мин</button>
     </div>
     <button class="timer-btn btn-stop" onclick="stopTimer()" style="font-size:12px;padding:6px">⏹ Стоп</button>
   </div>
@@ -797,7 +975,7 @@ function showTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
   const tabs = document.querySelectorAll('.tab');
-  const map = { a: 0, b: 1, c: 2, rules: 3 };
+  const map = { a: 0, b: 1, rules: 2 };
   if (map[id] !== undefined) tabs[map[id]].classList.add('active');
 }
 
@@ -953,7 +1131,7 @@ function updateStartIndicator(prog) {
   }
 }
 // On load, check if there's an active start
-['a','b','c'].forEach(p => {
+['a','b'].forEach(p => {
   if (localStorage.getItem('workout-start-' + p)) updateStartIndicator(p);
 });
 
